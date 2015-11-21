@@ -42,13 +42,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <OutDir>$(SolutionDir)..\lib\</OutDir>
-    <TargetName>evl_$(ProjectName)_$(Configuration)</TargetName>
+    <TargetName>evl_utility_static-rtl_debug</TargetName>
     <TargetExt>.lib</TargetExt>
     <IntDir>Intermediate_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <OutDir>$(SolutionDir)..\lib\</OutDir>
-    <TargetName>evl_$(ProjectName)_$(Configuration)</TargetName>
+    <TargetName>evl_utility_static-rtl_release</TargetName>
     <TargetExt>.lib</TargetExt>
     <IntDir>Intermediate_$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -58,6 +58,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_PF_WINDOWS_;EVL_UTILITY_MPOOL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>Intermediate_$(Configuration)\evl_utility_static-rtl_debug.pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -71,6 +72,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_PF_WINDOWS_;EVL_UTILITY_MPOOL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>Intermediate_$(Configuration)\evl_utility_static-rtl_release.pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -91,11 +93,13 @@
     <ClInclude Include="..\include\singleton.hpp" />
     <ClInclude Include="..\include\uuid_generator.hpp" />
     <ClInclude Include="..\include\varsize_mpool.hpp" />
+    <ClInclude Include="..\include\win_console_color.h" />
     <ClInclude Include="source\mpool\common.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\mpool\mpool.cc" />
     <ClCompile Include="source\mpool\alloc.cc" />
+    <ClCompile Include="source\win_console_color.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

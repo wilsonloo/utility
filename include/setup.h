@@ -1,16 +1,20 @@
 #ifndef EVL_UTILITY_MPOOL_SETUP_H_
 #define EVL_UTILITY_MPOOL_SETUP_H_
 
-#if EVL_UTILITY_MPOOL_RELEASE
 
-#define RTQ_LIBRARY_NAME "evl_utility_release"
+// ÷ª π”√æ≤Ã¨ø‚
+#if defined(_DLL)
+#define _DLL_DEFINED
+#undef _DLL
+#endif
+
+#define RTQ_LIBRARY_NAME "evl_utility"
 #include "auto_link.h"
 
-#else
-
-#define RTQ_LIBRARY_NAME "evl_utility_debug"
-#include "auto_link.h"
-
-#endif // DEBUG_DEVELOP_EVL_NET
+// ª÷∏¥
+#if defined(_DLL_DEFINED)
+#undef _DLL_DEFINED
+#define _DLL
+#endif
 
 #endif // EVL_UTILITY_MPOOL_SETUP_H_

@@ -51,12 +51,18 @@
     <ClInclude Include="..\include\setup.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\win_console_color.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\mpool\mpool.cc">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\mpool\alloc.cc">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\win_console_color.cc">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

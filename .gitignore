@@ -1,1 +1,4 @@
 *.sdf
+lib/*.*
+build/Intermediate_debug/*.*
+build/Intermediate_release/*.*

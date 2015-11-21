@@ -12,7 +12,7 @@
 #endif // !RTQ_LIBRARY_NAME
 
 #if defined(_MT) && defined(_DLL)
-#  define TWP_LIB_RTL_OPT "static-rtl"
+#  define TWP_LIB_RTL_OPT "dynamic-rtl"
 #else
 #	if defined(_MT)
 #		define TWP_LIB_RTL_OPT "static-rtl"
