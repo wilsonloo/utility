@@ -11,12 +11,34 @@
 #error RTQ_LIBRARY_NAME macro not set
 #endif // !RTQ_LIBRARY_NAME
 
+#if defined(_MT) && defined(_DLL)
+#  define TWP_LIB_RTL_OPT "static-rtl"
+#else
+#	if defined(_MT)
+#		define TWP_LIB_RTL_OPT "static-rtl"
+#	else
+#		define TWP_LIB_RTL_OPT "static-rtl"
+#	endif
+#endif
+
+// set EVL_LIB_DEBUG_OPT
+#ifdef _DEBUG
+#  define EVL_LIB_DEBUG_OPT "debug"
+#else
+#  define EVL_LIB_DEBUG_OPT "release"
+#endif
+
 #ifdef _PF_WINDOWS_
 
-#pragma comment(lib, RTQ_LIBRARY_NAME".lib")
+#define RTQ_LIBRARY_NAME_FULLNAME RTQ_LIBRARY_NAME "_" TWP_LIB_RTL_OPT "_" EVL_LIB_DEBUG_OPT
+
+#pragma comment(lib, RTQ_LIBRARY_NAME_FULLNAME".lib")
 
 #else
-#error not implemented yet.
+#error not implemented yet for this unknown platform.
 #endif
 
 #undef RTQ_LIBRARY_NAME
+#undef TWP_LIB_RTL_OPT
+#undef EVL_LIB_DEBUG_OPT
+#undef RTQ_LIBRARY_NAME_FULLNAME
