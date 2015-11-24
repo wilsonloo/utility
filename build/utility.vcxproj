@@ -33,24 +33,30 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="ingore_warnings.props" />
     <Import Project="using_solution_dir.props" />
+    <Import Project="using_third_party.props" />
+    <Import Project="publish.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="ingore_warnings.props" />
     <Import Project="using_solution_dir.props" />
+    <Import Project="using_third_party.props" />
+    <Import Project="publish.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <OutDir>$(SolutionDir)..\lib\</OutDir>
     <TargetName>evl_utility_static-rtl_debug</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IntDir>Intermediate_$(Configuration)\</IntDir>
+    <IntDir>Intermediate\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <OutDir>$(SolutionDir)..\lib\</OutDir>
     <TargetName>evl_utility_static-rtl_release</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IntDir>Intermediate_$(Configuration)\</IntDir>
+    <IntDir>Intermediate\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <ClCompile>
@@ -58,7 +64,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_PF_WINDOWS_;EVL_UTILITY_MPOOL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ProgramDataBaseFileName>Intermediate_$(Configuration)\evl_utility_static-rtl_debug.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)..\lib\evl_utility_static-rtl_debug.pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -72,7 +79,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_PF_WINDOWS_;EVL_UTILITY_MPOOL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ProgramDataBaseFileName>Intermediate_$(Configuration)\evl_utility_static-rtl_release.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)..\lib\evl_utility_static-rtl_release.pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -97,6 +105,7 @@
     <ClInclude Include="source\mpool\common.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\evl_logger.cc" />
     <ClCompile Include="source\mpool\mpool.cc" />
     <ClCompile Include="source\mpool\alloc.cc" />
     <ClCompile Include="source\win_console_color.cc" />

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <THIRD_PARTY_ROOT>%EVL_PUBLISH_ROOT%</THIRD_PARTY_ROOT>
+    <THIRD_PARTY_LOG4CPLUS_INCLUDE_DIR>$(THIRD_PARTY_ROOT)third_party\log4cplus\include\</THIRD_PARTY_LOG4CPLUS_INCLUDE_DIR>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(THIRD_PARTY_ROOT);$(THIRD_PARTY_LOG4CPLUS_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="THIRD_PARTY_ROOT">
+      <Value>$(THIRD_PARTY_ROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="THIRD_PARTY_LOG4CPLUS_INCLUDE_DIR">
+      <Value>$(THIRD_PARTY_LOG4CPLUS_INCLUDE_DIR)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

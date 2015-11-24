@@ -1,4 +1,13 @@
 *.sdf
+*.tlog
+*.log
+*.obj
+*.lastbuildstate
+
 lib/*.*
 build/Intermediate_debug/*.*
 build/Intermediate_release/*.*
+/lib/evl_utility_static-rtl_release.pdb
+/lib/evl_utility_static-rtl_debug.lib
+/lib/evl_utility_static-rtl_debug.pdb
+/lib/evl_utility_static-rtl_release.lib

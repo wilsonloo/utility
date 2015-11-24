@@ -65,5 +65,8 @@
     <ClCompile Include="source\win_console_color.cc">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="source\evl_logger.cc">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
