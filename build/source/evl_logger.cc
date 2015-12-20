@@ -10,6 +10,7 @@ namespace evl
 			: cur_color_type_(CONSOLE_COLOR_TYPE_NONE)
 		{
 			evl::utility::init_console_color();
+			log4cplus::initialize();
 		}
 
 		bool EvlLogger::Init(const char* name)

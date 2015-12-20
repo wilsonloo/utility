@@ -4,8 +4,8 @@
 /*Header file to color text and background in windows console applications
 Global variables - textcol,backcol,deftextcol,defbackcol,colorprotect*/
 
-#include<windows.h>
-#include<iosfwd>
+#include <windows.h>
+#include <iosfwd>
 #include "setup.h"
 
 namespace evl

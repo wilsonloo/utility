@@ -12,13 +12,21 @@
 #endif // !RTQ_LIBRARY_NAME
 
 #if defined(_MT) && defined(_DLL)
-#  define TWP_LIB_RTL_OPT "dynamic-rtl"
+#  define EVL_LIB_RTL_OPT "dynamic-rtl"
 #else
 #	if defined(_MT)
-#		define TWP_LIB_RTL_OPT "static-rtl"
+#		define EVL_LIB_RTL_OPT "static-rtl"
 #	else
-#		define TWP_LIB_RTL_OPT "static-rtl"
+#		define EVL_LIB_RTL_OPT "static-rtl"
 #	endif
+#endif
+
+#if _MSC_VER == 1700
+#define PLARFORM_TOOLSET "v110"
+#elif _MSC_VER == 1800
+#define PLARFORM_TOOLSET "v120"
+#else
+#error unsuported playerform toolset
 #endif
 
 // set EVL_LIB_DEBUG_OPT
@@ -30,7 +38,7 @@
 
 #ifdef _PF_WINDOWS_
 
-#define RTQ_LIBRARY_NAME_FULLNAME RTQ_LIBRARY_NAME "_" TWP_LIB_RTL_OPT "_" EVL_LIB_DEBUG_OPT
+#define RTQ_LIBRARY_NAME_FULLNAME RTQ_LIBRARY_NAME "_" EVL_LIB_RTL_OPT "_" PLARFORM_TOOLSET "_" EVL_LIB_DEBUG_OPT
 
 #pragma comment(lib, RTQ_LIBRARY_NAME_FULLNAME".lib")
 
@@ -39,6 +47,6 @@
 #endif
 
 #undef RTQ_LIBRARY_NAME
-#undef TWP_LIB_RTL_OPT
+#undef EVL_LIB_RTL_OPT
 #undef EVL_LIB_DEBUG_OPT
 #undef RTQ_LIBRARY_NAME_FULLNAME
