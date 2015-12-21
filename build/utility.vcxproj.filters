@@ -54,6 +54,9 @@
     <ClInclude Include="..\include\win_console_color.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\varlen_struct.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\mpool\mpool.cc">

@@ -134,7 +134,7 @@ namespace evl {
 		template<typename VarLenStructType>
 		class VarLenStructSender
 		{
-			typedef boost::function<boost::int32_t(const void*, boost::uint32_t)> SenderHandleType;
+			typedef boost::function<void(const void*, boost::uint32_t)> SenderHandleType;
 			typedef typename VarLenStructType::ElemType ElemType;
 		public:
 			VarLenStructSender(const SenderHandleType& sender)
@@ -155,15 +155,9 @@ namespace evl {
 
 			bool send()
 			{
-				if(sender_(&var_len_struct_, var_len_struct_.GetSize()) != 0)
-				{
-					++send_count_;
-					var_len_struct_.Clear();
-					return true;
-				}else
-				{
-					return false;
-				}
+				sender_(&var_len_struct_, var_len_struct_.GetSize());
+				++send_count_;
+				var_len_struct_.Clear();
 			}
 
 			template<class TAddElemType>
