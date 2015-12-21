@@ -5,8 +5,20 @@ namespace evl
 {
 	namespace utility
 	{
-		static void data_dump( FILE* file, const void* source, int howmuch)
+		static void data_dump( FILE* file, const void* source, int howmuch, const char* title = NULL)
 		{
+			if (title != NULL)
+			{
+				if (file != 0)
+				{
+					fprintf(file, "============== %10s ==============\n", title);
+				}
+				else
+				{
+					printf("============== %10s ==============\n", title);
+				}
+			}
+
 			int line; // output lines 
 			int posInSource ; // travels and output howmuch hex 
 			char outputOneline[ 256] = {0, }; // one line with 256 chars
