@@ -30,6 +30,7 @@ namespace evl
 			bool Init(const char* name);
 				
 			inline evl::utility::ConsoleColorType get_cur_text_color()const{return cur_color_type_;}
+			inline void set_log_level(LogLevelType lvl){ impl_.setLogLevel(lvl); }
 
 			log4cplus::Logger& GetImpl(evl::utility::ConsoleColorType color_type);
 			log4cplus::Logger& GetImpl();

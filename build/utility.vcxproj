@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClInclude Include="..\include\auto_link.h" />
     <ClInclude Include="..\include\data_dump.hpp" />
+    <ClInclude Include="..\include\evl_logger.h" />
     <ClInclude Include="..\include\fixed_size_object_pool.h" />
     <ClInclude Include="..\include\hash_map.h" />
     <ClInclude Include="..\include\mpool.hpp" />

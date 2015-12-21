@@ -57,6 +57,9 @@
     <ClInclude Include="..\include\varlen_struct.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\evl_logger.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\mpool\mpool.cc">

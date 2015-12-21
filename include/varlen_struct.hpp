@@ -153,7 +153,7 @@ namespace evl {
 
 			VarLenStructType& get_var_len_struct() { return var_len_struct_; }
 
-			bool send()
+			void send()
 			{
 				sender_(&var_len_struct_, var_len_struct_.GetSize());
 				++send_count_;
