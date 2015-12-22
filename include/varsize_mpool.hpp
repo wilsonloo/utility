@@ -30,7 +30,7 @@ namespace evl
 		public:
 			VarsizeMPool()
 				: min_cell_size_(MIN_CELL_SIZE)
-				, max_cell_size_(MIN_CELL_SIZE)
+				, max_cell_size_(MAX_TRUNCK_SIZE)
 			{
 
 			}
@@ -72,7 +72,8 @@ namespace evl
 			{
 				if (cell_size > max_cell_size_)
 				{
-					std::cerr << "allocing too large size than limit." << std::endl;
+					std::cerr << "allocing too large size than limit: " << max_cell_size_ 
+						<< " expecting: " << cell_size << std::endl;
 					BOOST_ASSERT(false);
 					return NULL;
 				}
