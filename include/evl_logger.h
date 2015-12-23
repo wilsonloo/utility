@@ -77,6 +77,10 @@ namespace evl
 
 #else 
 
+
+#define EVL_LOG_FATAL(logger_obj, MSG) \
+	LOG4CPLUS_FATAL( logger_obj.GetImpl(evl::utility::CONSOLE_COLOR_TYPE_GREEN), MSG);
+
 #define EVL_LOG_ERROR(logger_obj, MSG) \
 	LOG4CPLUS_ERROR( logger_obj.GetImpl(evl::utility::CONSOLE_COLOR_TYPE_RED), MSG);
 
@@ -88,6 +92,9 @@ namespace evl
 
 #define EVL_LOG_INFO(logger_obj, MSG) \
 	LOG4CPLUS_INFO( logger_obj.GetImpl(evl::utility::CONSOLE_COLOR_TYPE_WHITE), MSG);
+
+#define EVL_LOG_FATAL_FUNCLINE(logger_obj, MSG) \
+	EVL_LOG_FATAL(logger_obj, "(" << __FUNCTION__ << ":" << __LINE__ << ") " << MSG)
 
 #define EVL_LOG_ERROR_FUNCLINE(logger_obj, MSG) \
 	EVL_LOG_ERROR(logger_obj, "(" << __FUNCTION__ << ":" << __LINE__ << ") " << MSG)

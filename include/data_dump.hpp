@@ -7,16 +7,30 @@ namespace evl
 	{
 		static void data_dump( FILE* file, const void* source, int howmuch, const char* title = NULL)
 		{
-			if (title != NULL)
+			if (file != 0)
 			{
-				if (file != 0)
+				if (title != NULL)
 				{
 					fprintf(file, "============== %10s ==============\n", title);
 				}
 				else
 				{
+					fprintf(file, "==================================\n");
+				}
+
+				fprintf(file, " dumping %d data at 0x%x\n", howmuch, source);
+			}
+			else
+			{
+				if (title != NULL)
+				{
 					printf("============== %10s ==============\n", title);
 				}
+				else
+				{
+					printf("==================================\n");
+				}
+				printf(" dumping %d data at 0x%x\n", howmuch, source);
 			}
 
 			int line; // output lines 
