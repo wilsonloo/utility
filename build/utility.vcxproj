@@ -90,6 +90,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\include\auto_link.h" />
+    <ClInclude Include="..\include\bitmap_recorder.hpp" />
     <ClInclude Include="..\include\data_dump.hpp" />
     <ClInclude Include="..\include\evl_logger.h" />
     <ClInclude Include="..\include\fixed_size_object_pool.h" />
@@ -97,6 +98,7 @@
     <ClInclude Include="..\include\mpool.hpp" />
     <ClInclude Include="..\include\mpool\mpool.h" />
     <ClInclude Include="..\include\observer.hpp" />
+    <ClInclude Include="..\include\offset.hpp" />
     <ClInclude Include="..\include\read_write_array.hpp" />
     <ClInclude Include="..\include\setup.h" />
     <ClInclude Include="..\include\singleton.hpp" />
