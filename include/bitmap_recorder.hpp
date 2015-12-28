@@ -66,13 +66,13 @@ namespace evl
 
 			bool GetNextDirtyIdx(boost::uint32_t& cur_idx)
 			{
-				if (cur_idx + 1 > get_capacity())
-					return false;
-
-				if (IsSet(cur_idx + 1))
+				while (cur_idx < m_capacity - 1)
 				{
-					++cur_idx;
-					return true;
+					if (IsSet(cur_idx + 1))
+					{
+						++cur_idx;
+						return true;
+					}
 				}
 				
 				return false;
