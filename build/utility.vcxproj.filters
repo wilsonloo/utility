@@ -66,6 +66,9 @@
     <ClInclude Include="..\include\offset.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\console.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\mpool\mpool.cc">

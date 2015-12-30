@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClInclude Include="..\include\auto_link.h" />
     <ClInclude Include="..\include\bitmap_recorder.hpp" />
+    <ClInclude Include="..\include\console.hpp" />
     <ClInclude Include="..\include\data_dump.hpp" />
     <ClInclude Include="..\include\evl_logger.h" />
     <ClInclude Include="..\include\fixed_size_object_pool.h" />
