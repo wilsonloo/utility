@@ -9,40 +9,12 @@ namespace evl
 		class Singleton
 		{
 		public:
-			static T& get_mutable_instance()
-			{
-				if(instance_ == (T*)0)
-				{
-					instance_ = new T;
-				}
+			static T& get_mutable_instance();
 
-				return *instance_;
-			}
+			static T* get_mutable_instance_ptr();
 
-			static T* get_mutable_instance_ptr()
-			{
-				if(instance_ == (T*)0)
-				{
-					instance_ = new T;
-				}
-
-				return instance_;
-			}
-
-			virtual ~Singleton()
-			{
-				if(instance_ != (T*)0)
-				{
-					delete instance_;
-					instance_ = (T*)0;
-				}
-			}
-
-			Singleton()
-			{
-
-			}
-			
+			Singleton();
+			virtual ~Singleton();
 
 		private:
 			static T* instance_;
@@ -50,6 +22,42 @@ namespace evl
 
 		template<typename T>
 		T* Singleton<T>::instance_ = (T*)0;
+
+		template<typename T>
+		T& Singleton<T>::get_mutable_instance()
+		{
+			if (instance_ == (T*)0)
+			{
+				instance_ = new T;
+			}
+
+			return *instance_;
+		}
+
+		template<typename T>
+		T* Singleton<T>::get_mutable_instance_ptr()
+		{
+			if (instance_ == (T*)0)
+			{
+				instance_ = new T;
+			}
+
+			return instance_;
+		}
+
+		template<typename T>
+		Singleton<T>::Singleton()
+		{}
+
+		template<typename T>
+		Singleton<T>::~Singleton()
+		{
+			if (instance_ != (T*)0)
+			{
+				delete instance_;
+				instance_ = (T*)0;
+			}
+		}
 	}
 } // namespace evl
 
