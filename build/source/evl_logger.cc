@@ -16,13 +16,13 @@ namespace evl
 		bool EvlLogger::Init(const char* name)
 		{
 #ifdef _DEBUG
-			if (log4cplus::Logger::exists(name))
+			if (log4cplus::Logger::exists(LOG4CPLUS_C_STR_TO_TSTRING(name)))
 			{
 				std::cerr << "logger name " << name << " already exists." << std::endl;
 				return false;
 			}
 #endif
-			impl_ = log4cplus::Logger::getInstance(name);
+			impl_ = log4cplus::Logger::getInstance(LOG4CPLUS_C_STR_TO_TSTRING(name));
 			return true;
 		}
 
