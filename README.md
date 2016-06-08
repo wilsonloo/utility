@@ -3,6 +3,8 @@
   
 # 依赖
   log4cplus
+  
+# 合并到主分支
 
 # build options
   default evl_logger is ignored ,as it will usage log4cplus, unmark IGNORE_EVL_LOGGER in source/CMakeLists.txt will include it(but currently log4cplus is not includeed)
