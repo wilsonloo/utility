@@ -4,7 +4,12 @@
 /*Header file to color text and background in windows console applications
 Global variables - textcol,backcol,deftextcol,defbackcol,colorprotect*/
 
-#include <windows.h>
+#if __LINUX__
+
+#elif _WIN32__
+    #include <windows.h>
+#endif
+
 #include <iosfwd>
 #include "setup.h"
 

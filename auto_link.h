@@ -22,11 +22,13 @@
 #endif
 
 #if _MSC_VER == 1700
-#define PLARFORM_TOOLSET "v110"
+    #define PLARFORM_TOOLSET "v110"
 #elif _MSC_VER == 1800
-#define PLARFORM_TOOLSET "v120"
+    #define PLARFORM_TOOLSET "v120"
+#elif _PF_LINUX_
+    #define PLARFORM_TOOLSET "v120"
 #else
-#error unsuported playerform toolset
+    #pragma message("unsuported playerform toolset, asume is Linux")
 #endif
 
 // set EVL_LIB_DEBUG_OPT
@@ -45,6 +47,10 @@
 #endif // _UNICODE
 
 #pragma comment(lib, RTQ_LIBRARY_NAME_FULLNAME".lib")
+
+#elif _PF_LINUX_
+
+#define RTQ_LIBRARY_NAME_FULLNAME RTQ_LIBRARY_NAME "_" EVL_LIB_RTL_OPT "_" PLARFORM_TOOLSET "_" EVL_LIB_DEBUG_OPT "_ud"
 
 #else
 #error not implemented yet for this unknown platform.
