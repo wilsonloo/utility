@@ -1,10 +1,3 @@
 # utility
   个人使用的帮助文件
-  
-# 依赖
-  log4cplus
-  
-# 合并到主分支
-
-# build options
-  default evl_logger is ignored ,as it will usage log4cplus, unmark IGNORE_EVL_LOGGER in source/CMakeLists.txt will include it(but currently log4cplus is not includeed)
+  不再使用静态库方式发布，而是以头文件方式引入使用
