@@ -45,7 +45,7 @@ namespace evl
 				, current_valid_id_(min_id)
 			{
 				assert(min_id < max_id);
-				assert(invalid_id < min_id && max_id < invalid_id)
+				assert(invalid_id < min_id && max_id < invalid_id);
 			}
 
 			virtual ~UnsafeUUIDGenerator()
