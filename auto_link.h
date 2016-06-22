@@ -24,7 +24,9 @@
 #if _MSC_VER == 1700
     #define PLARFORM_TOOLSET "v110"
 #elif _MSC_VER == 1800
-    #define PLARFORM_TOOLSET "v120"
+	#define PLARFORM_TOOLSET "v120"
+#elif _MSC_VER == 1900
+	#define PLARFORM_TOOLSET "v140"
 #elif _PF_LINUX_
     #define PLARFORM_TOOLSET "v120"
 #else
