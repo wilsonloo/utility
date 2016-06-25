@@ -18,7 +18,6 @@ namespace evl
 					fprintf(file, "==================================\n");
 				}
 
-				fprintf(file, " dumping %d data at 0x%x\n", howmuch, source);
 			}
 			else
 			{
@@ -30,7 +29,6 @@ namespace evl
 				{
 					printf("==================================\n");
 				}
-				printf(" dumping %d data at 0x%x\n", howmuch, source);
 			}
 
 			int line; // output lines 

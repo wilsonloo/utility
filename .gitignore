@@ -3,6 +3,7 @@
 *.log
 *.obj
 *.lastbuildstate
+*~
 
 lib/*.*
 build/Intermediate_debug/*.*

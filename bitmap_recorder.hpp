@@ -22,8 +22,8 @@ namespace evl
 
 		public:
 			explicit BitMapRecorder(boost::uint32_t capacity) 
-				: m_capacity(capacity)
-				, m_data(NULL)
+				: m_data(NULL)
+				, m_capacity(capacity)
 			{
 				unsigned long charsNeeded = m_capacity / MIN_ALIGN_SIZE + 1;
 
