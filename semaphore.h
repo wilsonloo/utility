@@ -6,7 +6,7 @@
 /************************************************************************/
 
 #if _PF_WINDOWS_
-#include <WinBase.h>
+#include "winsock_wrapper.h"
 #endif 
 
 namespace evl
