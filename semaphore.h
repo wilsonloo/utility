@@ -59,7 +59,7 @@ namespace evl
 				::WaitForSingleObject(sem_m, INFINITE);
 #else
 				pthread_testcancel();
-#if #elif _PF_LINUX_
+#if _PF_LINUX_
 				while (sem_wait(&sem_m) != 0 && errno == EINTR);
 #else
 				while (sem_wait(sem_m) != 0 && errno == EINTR);

@@ -28,7 +28,7 @@
 #elif _MSC_VER == 1900
 	#define PLARFORM_TOOLSET "v140"
 #elif _PF_LINUX_
-    #define PLARFORM_TOOLSET "v120"
+    #define PLARFORM_TOOLSET "gxx-all"
 #else
     #pragma message("unsuported playerform toolset, asume is Linux")
 #endif
@@ -62,3 +62,4 @@
 #undef EVL_LIB_RTL_OPT
 #undef EVL_LIB_DEBUG_OPT
 #undef RTQ_LIBRARY_NAME_FULLNAME
+#undef PLARFORM_TOOLSET
