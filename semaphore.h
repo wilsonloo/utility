@@ -7,6 +7,9 @@
 
 #if _PF_WINDOWS_
 #include "winsock_wrapper.h"
+#elif _PF_LINUX_
+#include<semaphore.h>
+#include <sys/time.h>
 #endif 
 
 namespace evl
