@@ -11,11 +11,11 @@ namespace evl
 			{
 				if (title != NULL)
 				{
-					fprintf(file, "============== %10s ==============\n", title);
+					fprintf(file, "============== %10s [len:%d]==============\n", title, howmuch);
 				}
 				else
 				{
-					fprintf(file, "==================================\n");
+					fprintf(file, "=================[len:%d]=================\n", howmuch);
 				}
 
 			}
@@ -23,11 +23,11 @@ namespace evl
 			{
 				if (title != NULL)
 				{
-					printf("============== %10s ==============\n", title);
+					printf("============== %10s [%d] ==============\n", title, howmuch);
 				}
 				else
 				{
-					printf("==================================\n");
+					printf("=================[len:%d]=================\n", howmuch);
 				}
 			}
 
