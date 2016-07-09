@@ -25,9 +25,10 @@ namespace evl
 		public:
 			MessageQueue()
 				: maxSize_m(DEFAULT_TASK_QUEUE_SIZE),
+				minSize_m(0),
 				curSize_m(0),
-				header_m(NULL),
-				tail_m(NULL)
+				tail_m(NULL),
+				header_m(NULL)
 			{
 				
 			}
@@ -68,7 +69,7 @@ namespace evl
 					return 0;
 				}
 
-				if (Semaphore::INVALID_VALUE == ret)
+				if (int(Semaphore::INVALID_VALUE) == ret)
 				{
 					// Error
 					return INVALID_VALUE;
