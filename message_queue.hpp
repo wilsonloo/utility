@@ -106,7 +106,7 @@ namespace evl
 
 			inline unsigned int getSize() const { return curSize_m; }
 			inline unsigned int getMaxSize() const { return maxSize_m; }
-			inline bool empty()const { return getSize() > 0; }
+			inline bool empty()const { return getSize() == 0; }
 
 			inline void setHigherWaterLevel(unsigned int maxSize){ maxSize_m = maxSize; }
 			inline void setLowerWaterLevel(unsigned int minSize) { minSize_m = minSize; }
