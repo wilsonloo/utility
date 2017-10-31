@@ -1,11 +1,11 @@
-#ifndef EVL_UTILITY_OBSERVER_HPP_
-#define EVL_UTILITY_OBSERVER_HPP_
-
-/*
-	观察者模式
+/********************************************************************
+*     Author  : Wensheng.Luo
+*       Mail  : samule21@163.com
+* CreateTime  : 2017-10-18 11:49
+* Description : 观察者模式
 
 	该模式的实现主要有两个类：Observer（观察者） 和 Observable（被观察者, 由ObjservableSubject 封装）
-	Observer 与 Observable 之间通过 Connection 进行连接，具体的操作已由 ObservableSubject 进行了封装 
+	Observer 与 Observable 之间通过 Connection 进行连接，具体的操作已由 ObservableSubject 进行了封装
 	Observer 通过虚函数 on_event() 提供了被观察者事件的回调封装，需要由子类进行覆盖实现。
 	以下是例子：
 
@@ -33,13 +33,16 @@
 
 		// subject 触发事件
 		subject->notify(nullptr, 22);
-		
+
 		// 测试运行结果
 		subject->dump();
 		master->dump();
 	}
+ *
+*********************************************************************/
 
-*/
+#ifndef EVL_UTILITY_OBSERVER_HPP_
+#define EVL_UTILITY_OBSERVER_HPP_
 
 #include <set>
 #include <list>
@@ -150,7 +153,7 @@ namespace evl
 				auto conn_ptr = std::shared_ptr<Connection>(new Connection());
 
 				// 绑定连接销毁器
-				conn_ptr->add_dispose_handler(std::bind(&Observable::connection_disposer, this, std::placeholders::_1));
+				conn_ptr->add_dispose_handler(std::bind(&Observable::ConnectionDisposer, this, std::placeholders::_1));
 
 				// conn 绑定处理器
 				conns_.insert(std::make_pair(conn_ptr, observer));
@@ -158,7 +161,7 @@ namespace evl
 				return conn_ptr;
 			}
 
-			void connection_disposer(Connection* disposing_conn) {
+			void ConnectionDisposer(Connection* disposing_conn) {
 				if (disposing_conn == nullptr)
 					return;
 
@@ -233,13 +236,13 @@ namespace evl
 			inline void insert_connection(ConnectionPtr conn_ptr)
 			{
 				// 绑定连接销毁器
-				conn_ptr->add_dispose_handler(std::bind(&Observer::connection_disposer, this, std::placeholders::_1));
+				conn_ptr->add_dispose_handler(std::bind(&Observer::ConnectionDisposer, this, std::placeholders::_1));
 
 				observing_targets_.push_back(conn_ptr);
 
 			}
 
-			void connection_disposer(Connection* disposing_conn) {
+			void ConnectionDisposer(Connection* disposing_conn) {
 				if (disposing_conn == nullptr)
 					return;
 
