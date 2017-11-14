@@ -53,13 +53,17 @@ namespace evl
             //////////////////////////////////////////////////////////////////////////
             // #pragma mark - Casing
             /** Converts a string to lowercase. */
-            inline std::string toLowerCase(const std::string& s) {
-                std::transform(std::begin(s), std::end(s), std::begin(s), ::tolower);
+            inline std::string toLowerCase(const std::string& str) {
+                std::string s(str);
+                std::transform(std::begin(str), std::end(str), std::begin(s), ::tolower);
+
                 return s;
             }
             /** Convers a string to uppercase. */
-            inline std::string toUpperCase(const std::string& s) {
-                std::transform(std::begin(s), std::end(s), std::begin(s), ::toupper);
+            inline std::string toUpperCase(const std::string& str) {
+                std::string s(str);
+                std::transform(std::begin(str), std::end(str), std::begin(s), ::toupper);
+
                 return s;
             }
 
