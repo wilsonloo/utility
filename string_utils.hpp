@@ -172,12 +172,14 @@ namespace evl
                 // get the data-length after formated
                 va_list args;
                 va_start(args, format);
-                int count = snprintf(nullptr, 0, format, args);
+                int count = vsnprintf(nullptr, 0, format, args);
                 va_end(args);
 
                 va_start(args, format);
-                char* buf = (char*)malloc(count * sizeof(char));
-                snprintf(buf, count, format, args);
+                int length = count * sizeof(char) + 1;
+                char* buf = (char*)malloc(length);
+                vsnprintf(buf, length, format, args);
+                buf[length - 1] = '\0';
                 va_end(args);
 
                 std::string str(buf);
