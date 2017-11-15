@@ -278,11 +278,11 @@ namespace evl
             // low level logic operations  
             // F, G, H and I are basic MD5 functions.  
             inline uint4 F(uint4 x, uint4 y, uint4 z) {
-                return x&y | ~x&z;
+                return (x&y) | (~x&z);
             }
 
             inline uint4 G(uint4 x, uint4 y, uint4 z) {
-                return x&z | y&~z;
+                return (x&z) | (y&~z);
             }
 
             inline uint4 H(uint4 x, uint4 y, uint4 z) {
