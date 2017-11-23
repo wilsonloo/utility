@@ -8,6 +8,7 @@
 #ifndef EVL_UTILITY_STRING_UTILS_HPP_
 #define EVL_UTILITY_STRING_UTILS_HPP_
 
+#include <stdarg.h>
 #include <string>
 #include <vector>
 #include <algorithm>
