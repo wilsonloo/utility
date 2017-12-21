@@ -189,6 +189,48 @@ namespace evl
 
                 return str;
             }
+
+            inline std::string concat(const std::vector<std::string>& array, const std::string& connector)
+            {
+                std::string ret;
+                
+                int array_size = array.size();
+                for (int k = 0; k < array_size; ++k) {
+                    if (k + 1 < array_size)
+                    {
+                        ret += array.at(k) + connector;
+                    }
+                    else {
+                        ret += array.at(k);
+                    }
+
+                }
+
+                return ret;
+            }
+
+            typedef std::function<std::string(const std::string& connector)> ConcatElemModifierType;
+            inline std::string concat(const std::vector<std::string>& array, const std::string& connector, ConcatElemModifierType elemModifier)
+            {
+                std::string ret;
+
+                int array_size = array.size();
+                for (int k = 0; k < array_size; ++k) {
+                    auto elem = elemModifier(array.at(k));
+
+                    if (k + 1 < array_size)
+                    {
+                        ret += elem + connector;
+                    }
+                    else {
+                        ret += elem;
+                    }
+
+                }
+
+                return ret;
+            }
+
         }// namespace string_utils
       } // namespace utility
 } // namespace evl
