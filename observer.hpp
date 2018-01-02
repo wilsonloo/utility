@@ -1,7 +1,7 @@
 /********************************************************************
 *     Author  : Wensheng.Luo
 *       Mail  : samule21@163.com
-* CreateTime  : 2017-10-18 11:49
+* CreateTime  : 2016-08-18 11:49
 * Description : 观察者模式
 
 	该模式的实现主要有两个类：Observer（观察者） 和 Observable（被观察者, 由ObjservableSubject 封装）
@@ -49,6 +49,7 @@
 #include <map>
 #include <functional>
 #include <memory>
+#include <iostream>
 
 namespace evl
 {
@@ -139,7 +140,7 @@ namespace evl
 			}
 
 			// 向全部观察者发送事件
-			void notify_all(const void* data, int param) {
+			virtual void notify_all(const void* data, int param) {
 				if (conns_.empty())
 					return;
 				
@@ -269,11 +270,11 @@ namespace evl
 		public:
 			void add_observer(evl::utility::Observer* observer)
 			{
-				auto conn = create_connection(std::bind(&evl::utility::Observer::on_event, observer, std::placeholders::_1, std::placeholders::_2));
+				auto conn = create_connection(std::bind<int>(&evl::utility::Observer::on_event, observer, std::placeholders::_1, std::placeholders::_2));
 				observer->insert_connection(conn);
 			}
 
-			void notify(const void* data, int param) {
+			virtual void notify(const void* data, int param) {
 				notify_all(data, param);
 			}
 
