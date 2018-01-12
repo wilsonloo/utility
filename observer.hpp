@@ -278,6 +278,9 @@ namespace evl
 				notify_all(data, param);
 			}
 
+            virtual void notify(const void* data) {
+                notify(data, 0);
+            }
 		};
 	}
 }

@@ -210,6 +210,7 @@ namespace evl
             }
 
             typedef std::function<std::string(const std::string& connector)> ConcatElemModifierType;
+
             inline std::string concat(const std::vector<std::string>& array, const std::string& connector, ConcatElemModifierType elemModifier)
             {
                 std::string ret;
@@ -231,6 +232,32 @@ namespace evl
                 return ret;
             }
 
+            template<typename ElemType>
+            struct ConcatElemModifierTraits
+            {
+                typedef std::function<std::string(const ElemType& connector)> type;
+            };
+
+            template<typename ElemType>
+            inline std::string concat_ex(const std::vector<ElemType>& array, const std::string& connector, typename ConcatElemModifierTraits<ElemType>::type elemModifier)
+            {
+                std::string ret;
+
+                int array_size = array.size();
+                for (int k = 0; k < array_size; ++k) {
+                    auto elem = elemModifier(array.at(k));
+
+                    if (k + 1 < array_size)
+                    {
+                        ret += elem + connector;
+                    }
+                    else {
+                        ret += elem;
+                    }
+                }
+
+                return ret;
+            }
 
             /*****************************************************************************
             * 返回一个utf编码的字符表示的 字节长度
