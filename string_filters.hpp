@@ -28,7 +28,7 @@ namespace evl
             {
                 int charLength = chars.length();
                 for (int k = 0; k < charLength; ++k) {
-                    if (source.find(chars.at(k) == std::string::npos))
+                    if (source.find(chars.at(k)) != std::string::npos)
                         return true;
                 }
 
@@ -48,17 +48,22 @@ namespace evl
 
             static bool is_chinise_char(unsigned long unicode)
             {
-                return unicode >= 0x4e00 && unicode <= 0x9fa5;
+                return (unicode >= 0x2e80 && unicode <= 0x2fdf) ||
+                    (unicode >= 0x3400 && unicode <= 0x4dbf) ||
+                    (unicode >= 0x4e00 && unicode <= 0x9fff);
             }
 
             static bool is_japanise_char(unsigned long unicode)
             {
-                return unicode >= 0x0800 && unicode <= 0x4e00;
+                return (unicode >= 0x3040 && unicode <= 0x30ff) ||
+                    (unicode >= 0x31f0 && unicode <= 0x31ff);
             }
 
             static bool is_korean_char(unsigned long unicode)
             {
-                return unicode >= 0xAC00 && unicode <= 0xD7AF;
+                return (unicode >= 0x1100 && unicode <= 0x11ff) ||
+                    (unicode >= 0x3030 && unicode <= 0x308f) ||
+                    (unicode >= 0xac00 && unicode <= 0xd7af);
             }
             
             //************************************
