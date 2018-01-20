@@ -170,7 +170,7 @@ namespace evl
 				for (ConnectionCollectionType::iterator iter = conns_.begin(); iter != conns_.end(); ) {
 					ConnectionPtr conn = iter->first;
 					if (conn.get() == disposing_conn) {
-						conns_.erase(iter++);
+						iter = conns_.erase(iter);
 					}
 					else {
 						++iter;
