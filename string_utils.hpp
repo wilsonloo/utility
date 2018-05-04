@@ -11,6 +11,8 @@
 #include <stdarg.h>
 #include <string>
 #include <vector>
+#include <cctype>  
+#include <iostream>  
 #include <algorithm>
 #include <sstream>
 #include <functional>
@@ -134,6 +136,19 @@ namespace evl
                 }
                 strs.push_back(s.substr(start, end));
                 return strs;
+            }
+
+            /** Splits strings based on a delimiter. */
+            inline void split(const std::string &s, std::vector<std::string>& strs, const std::string &delim = "\n") {
+                strs.clear();
+                auto start = 0U;
+                auto end = s.find(delim);
+                while (end != std::string::npos) {
+                    strs.push_back(s.substr(start, end - start));
+                    start = static_cast<unsigned int>(end + delim.length());
+                    end = s.find(delim, start);
+                }
+                strs.push_back(s.substr(start, end));
             }
 
             //////////////////////////////////////////////////////////////////////////
