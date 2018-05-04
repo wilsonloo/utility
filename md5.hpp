@@ -318,7 +318,7 @@ namespace evl
 
         };
 
-        std::string md5(const std::string str)
+        static std::string md5(const std::string str)
         {
             MD5 md5 = MD5(str);
 
