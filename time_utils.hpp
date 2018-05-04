@@ -1,6 +1,9 @@
 #ifndef EVL_TIME_UTILS_UTIL
 #define EVL_TIME_UTILS_UTIL
 
+#include <iomanip>
+#include <ctime>
+
 namespace evl
 {
     namespace utility
@@ -25,6 +28,29 @@ namespace evl
                 return t_; //秒时间  
             }
 
+			static time_t str_to_unixtime2(const char* strTime)
+			{
+				tm tm_;
+				int year, month, day;
+				sscanf(strTime, "%d-%d-%d", &year, &month, &day);
+				tm_.tm_year = year - 1900;
+				tm_.tm_mon = month - 1;
+				tm_.tm_mday = day;
+				tm_.tm_hour = 0;
+				tm_.tm_min = 0;
+				tm_.tm_sec = 0;
+				tm_.tm_isdst = 0;
+
+				time_t t_ = mktime(&tm_); //已经减了8个时区  
+				return t_; //秒时间  
+			}
+
+            static std::string unixtime_to_str(const time_t& what_time, const char* format = "%Y-%m-%d %H:%M:%S") {
+                std::stringstream ss;
+                ss << std::put_time(std::localtime(&what_time), format);
+                return ss.str();
+            }
+
 #else
             static time_t str_to_unixtime(const char* strTime)
             {
@@ -34,8 +60,31 @@ namespace evl
                 strptime(strTime, "%Y-%m-%d %H:%M:%S", &tm_); //将字符串转换为tm时间  
                 tm_.tm_isdst = 0;
                 t_ = mktime(&tm_); //将tm时间转换为秒时间  
-
                 return t_;
+            }
+
+			static time_t str_to_unixtime2(const char* strTime)
+			{
+				tm tm_;
+				time_t t_;
+
+				strptime(strTime, "%Y-%m-%d", &tm_); //将字符串转换为tm时间
+				tm_.tm_hour = 0;
+				tm_.tm_min = 0;
+				tm_.tm_sec = 0;
+				tm_.tm_isdst = 0;
+				t_ = mktime(&tm_); //将tm时间转换为秒时间  
+
+				return t_;
+			}
+
+            static std::string unixtime_to_str(const time_t& what_time, const char* format = "%Y-%m-%d %H:%M:%S") {
+
+                std::tm * ptm = std::localtime(&what_time);
+                char buffer[128] = { 0, };
+                std::strftime(buffer, sizeof(buffer), format, ptm);
+
+                return std::string(buffer);
             }
 
 #endif
