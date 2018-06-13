@@ -4,6 +4,10 @@
 #include <iomanip>
 #include <ctime>
 
+#if defined( __WIN32__ ) || defined( _WIN32 ) || defined(_WINDOWS) || defined(WIN) || defined(_WIN64) || defined( __WIN64__ )
+#pragma warning(disable:4996)
+#endif
+
 namespace evl
 {
     namespace utility
@@ -88,6 +92,73 @@ namespace evl
             }
 
 #endif
+			// 获取下年指定月的unixtime（单位：秒，从1970年开始的秒数）
+			static unsigned int getNextYearAssignMonthUnixtime(int when)
+			{
+				time_t when_time(when);
+				struct tm* when_tm = localtime(&when_time); /*获取本地时区时间*/
+				int when_mon = when_tm->tm_mon;
+				int when_mday = when_tm->tm_mday;
+				int when_hour = when_tm->tm_hour;
+				int when_min = when_tm->tm_min;
+				int when_sec = when_tm->tm_sec;
+
+				time_t now = time(nullptr);
+				struct tm* p_tm = localtime(&now); /*获取本地时区时间*/
+				p_tm->tm_year += 1;	// 增加一个年
+				p_tm->tm_mon = when_mon;
+				p_tm->tm_mday = when_mday;
+				p_tm->tm_hour = when_hour;
+				p_tm->tm_min = when_min;
+				p_tm->tm_sec = when_sec;
+				p_tm->tm_isdst = 0;
+
+				time_t t_ = mktime(p_tm); //已经减了8个时区 
+
+				return t_;
+			}
+
+			// 获取下年开始的unixtime（单位：秒，从1970年开始的秒数）
+			static unsigned int getNextYearBeginUnixtime()
+			{
+				time_t now = time(nullptr);
+				struct tm* p_tm = localtime(&now); /*获取本地时区时间*/
+				p_tm->tm_year += 1;	// 增加一个年
+				p_tm->tm_mon = 1;	// 每年第一月
+				p_tm->tm_mday = 1;	// 每月第一天
+				p_tm->tm_hour = 0;
+				p_tm->tm_min = 0;
+				p_tm->tm_sec = 0;
+				p_tm->tm_isdst = 0;
+
+				time_t t_ = mktime(p_tm); //已经减了8个时区  
+
+				return t_;
+			}
+
+			// 获取下月指定天的unixtime（单位：秒，从1970年开始的秒数）
+			static unsigned int getNextMonthAssignDayUnixtime(int when)
+			{
+				time_t when_time(when);
+				struct tm* when_tm = localtime(&when_time); /*获取本地时区时间*/
+				int when_mday = when_tm->tm_mday;
+				int when_hour = when_tm->tm_hour;
+				int when_min = when_tm->tm_min;
+				int when_sec = when_tm->tm_sec;
+
+				time_t now = time(nullptr);
+				struct tm* p_tm = localtime(&now); /*获取本地时区时间*/
+				p_tm->tm_mon += 1; // 增加一个月
+				p_tm->tm_mday = when_mday;
+				p_tm->tm_hour = when_hour;
+				p_tm->tm_min = when_min;
+				p_tm->tm_sec = when_sec;
+				p_tm->tm_isdst = 0;
+
+				time_t t_ = mktime(p_tm); //已经减了8个时区 
+
+				return t_;
+			}
 
             // 获取下月开始的unixtime（单位：秒，从1970年开始的秒数）
             static unsigned int getNextMonthBeginUnixtime()
@@ -138,11 +209,34 @@ namespace evl
                 return t_;
             }
 
-            // 当前开始时的 unixtime（单位：秒，从1970年开始的秒数）
+            // 当天开始时的 unixtime（单位：秒，从1970年开始的秒数）
             static unsigned int getTodayBeginUnixtime()
             {
                 time_t now = time(nullptr);
                 struct tm* p_tm = localtime(&now); /*获取本地时区时间*/
+                p_tm->tm_hour = 0;
+                p_tm->tm_min = 0;
+                p_tm->tm_sec = 0;
+                p_tm->tm_isdst = 0;
+
+                time_t t_ = mktime(p_tm); //已经减了8个时区  
+
+                return t_;
+            }
+
+
+            // 昨天开始时的 unixtime（单位：秒，从1970年开始的秒数）
+            static unsigned int getYesterdayBeginUnixtime()
+            {
+                auto today = getTodayBeginUnixtime();
+                return today - 24 * 3600;
+            }
+
+            // 指定时间每天开始时的 unixtime（单位：秒，从1970年开始的秒数）
+            static unsigned int getDailyBeginUnixtime(int when)
+            {
+                time_t when_time(when);
+                struct tm* p_tm = localtime(&when_time); /*获取本地时区时间*/
                 p_tm->tm_hour = 0;
                 p_tm->tm_min = 0;
                 p_tm->tm_sec = 0;

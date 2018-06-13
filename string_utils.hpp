@@ -10,6 +10,7 @@
 
 #include <stdarg.h>
 #include <string>
+#include <list>
 #include <vector>
 #include <cctype>  
 #include <iostream>  
@@ -226,6 +227,29 @@ namespace evl
 
             typedef std::function<std::string(const std::string& connector)> ConcatElemModifierType;
 
+            template<typename ContainerType>
+            inline std::string concat(const typename ContainerType::const_iterator begin,
+                const typename ContainerType::const_iterator end, 
+                const std::string& connector, 
+                ConcatElemModifierType elemModifier)
+            {
+                std::string ret;
+
+                for(typename ContainerType::const_iterator iter = begin; iter != end; ++iter)
+                { 
+                    auto elem = elemModifier(*iter);
+                    if (iter == begin) {
+                        ret += elem;
+                    }
+                    else {
+                        ret += connector + elem;
+                    }
+
+                }
+
+                return ret;
+            }
+
             inline std::string concat(const std::vector<std::string>& array, const std::string& connector, ConcatElemModifierType elemModifier)
             {
                 std::string ret;
@@ -246,6 +270,27 @@ namespace evl
 
                 return ret;
             }
+
+			inline std::string concat(const std::list<std::string>& array, const std::string& connector, ConcatElemModifierType elemModifier)
+			{
+				std::string ret;
+
+				auto it = array.begin();
+				while (it != array.end())
+				{
+					auto elem = elemModifier(*it++);
+					ret += elem + connector;
+				}
+
+				int i = 0;
+				while (i < connector.length())
+				{
+					ret.pop_back();
+					++i;
+				}
+
+				return ret;
+			}
 
             template<typename ElemType>
             struct ConcatElemModifierTraits
