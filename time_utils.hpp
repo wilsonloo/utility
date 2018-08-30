@@ -6,6 +6,7 @@
 
 #if defined( __WIN32__ ) || defined( _WIN32 ) || defined(_WINDOWS) || defined(WIN) || defined(_WIN64) || defined( __WIN64__ )
 #pragma warning(disable:4996)
+#pragma warning(disable:4244)
 #endif
 
 namespace evl
@@ -246,6 +247,21 @@ namespace evl
 
                 return t_;
             }
+
+			// 得到每天的huor这个时间点的时间戳 unixtime（单位：秒，从1970年开始的秒数）
+			static unsigned int getSpecifyUnixtime(int when,const int &huor)
+			{
+				time_t when_time(when);
+				struct tm* p_tm = localtime(&when_time); /*获取本地时区时间*/
+				p_tm->tm_hour = huor;
+				p_tm->tm_min = 0;
+				p_tm->tm_sec = 0;
+				p_tm->tm_isdst = 0;
+
+				time_t t_ = mktime(p_tm); //已经减了8个时区  
+
+				return t_;
+			}
         }
     }
 }

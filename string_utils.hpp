@@ -210,7 +210,7 @@ namespace evl
             {
                 std::string ret;
                 
-                int array_size = array.size();
+                size_t array_size = array.size();
                 for (int k = 0; k < array_size; ++k) {
                     if (k + 1 < array_size)
                     {
