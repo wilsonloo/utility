@@ -50,7 +50,9 @@ local function newStack()
 end
 
 -- 生成table表 函数
-local function dump(to_writefile, ...)
+---@param explict_show bool 是否显示地显示nil 和 0长度字符串
+---     如果是，则分别显示为 p<nil> 和 p<''>
+local function dump(to_writefile, explict_show, ...)
     local final = {}
 
     local args = { ... }
@@ -102,6 +104,10 @@ local function dump(to_writefile, ...)
             table2String(root)
             tinsert(temp, "}")
             tinsert(final, table.concat(temp))
+        elseif root == nil and explict_show then
+            tinsert(final, "p<nil>")
+        elseif root == "" and explict_show then
+            tinsert(final, "p<''>")
         else
             tinsert(final, tostring(root))
         end
@@ -116,7 +122,7 @@ local function dump_title(title, tail, ...)
         out = "-- " .. tostring(title) .. "------------\n" .. out
     end
 
-    out = out .. dump(false, ...)
+    out = out .. dump(false, false, ...)
 
     if tail then
         out = out .. "-- " .. tostring(tail) .. "\n"
@@ -126,12 +132,12 @@ local function dump_title(title, tail, ...)
 end
 
 local function print_r(...)
-    local out = dump(false, ...)
+    local out = dump(false, true, ...)
     print(out)
 end
 
 local function log(...)
-    local out = dump(false, ...)
+    local out = dump(false, false, ...)
     logPrint(out)
 end
 
@@ -153,7 +159,7 @@ function M.test()
     }
     tb.f = f
 
-    local out = dump(false, "test dump ------------------", tb)
+    local out = dump(false, true, "test dump ------------------", tb)
     print(out)
 
     out = dump_title("dump-title", "dump-tail", tb)
