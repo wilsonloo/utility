@@ -5,18 +5,22 @@
 class CircleQueue:  # 循环队列
     """若只剩下一个空位置，该循环列表锁定，不能再加，但其优势在于可边删边加（剩两个及以上空位时），避免了假溢出"""
     def __init__(self, MaxSize):
-        self.cap = MaxSize
+        self.cap = MaxSize + 1
         self.data = [None] * self.cap  # 初始空间
         self.front = 0
         self.rear = 0
 
     def push(self, e):  # 元素e进队
-        assert (self.rear + 1) % self.cap != self.front  # 判断队满
+        if self.is_full():
+            self.front = (self.front + 1) % self.cap
         self.rear = (self.rear + 1) % self.cap
         self.data[self.rear] = e
 
     def is_empty(self):  # 判断队空
         return self.rear == self.front
+
+    def is_full(self):  # 判断队满
+        return (self.rear + 1) % self.cap == self.front 
 
     def pop(self):  # 元素出队
         assert not self.is_empty()  # 先判断是否为空
@@ -67,10 +71,12 @@ class CircleQueue:  # 循环队列
 if __name__=="__main__":
     hh = CircleQueue(5)
     print(hh.is_empty())
-    hh.push(0)
-    hh.push(1)
-    hh.push(2)
-    hh.push(3)
+    hh.push(11)
+    hh.push(22)
+    hh.push(33)
+    hh.push(44)
+    hh.push(55)
+    hh.push(66)
     print(hh.getsize())
     hh.dump()
 # True
